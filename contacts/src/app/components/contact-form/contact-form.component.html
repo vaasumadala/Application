@@ -1,0 +1,89 @@
+<div class="row mt-4">
+    <div class="col text-center">
+           <h1> Add Contact</h1>
+    </div>
+</div>
+<div class="row mt-4" *ngIf="isSubmitted">
+    <div class="col text-center">
+        <div class="alert alert-success" role="alert">
+           Form Posted
+          </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col col-md-6">
+        <form [formGroup]="contactForm" (ngSubmit)="validateAndPost()"> 
+            <div class="form-group">
+              <label for="firstName" [ngClass]="{'text-danger': contactForm.get('firstName').invalid && contactForm.get('firstName').touched }" >First Name</label>
+              <input type="text" [ngClass]="{'is-invalid': contactForm.get('firstName').invalid && contactForm.get('firstName').touched }" formControlName="firstName" class="form-control" id="firstName"  placeholder="First Name">
+              <div class="col" *ngIf="contactForm.get('firstName').invalid && contactForm.get('firstName').touched ">
+                <small  class="text-danger">
+                  Please Enter First Name
+                </small>      
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName" [ngClass]="{'text-danger': contactForm.get('lastName').invalid && contactForm.get('lastName').touched }">Last Name</label>
+                <input type="text" [ngClass]="{'is-invalid': contactForm.get('lastName').invalid && contactForm.get('lastName').touched }" class="form-control" formControlName="lastName" id="lastName"  placeholder="Last Name">
+                <div class="col" *ngIf="contactForm.get('lastName').invalid && contactForm.get('lastName').touched ">
+                    <small class="text-danger">
+                      Please Enter First Name
+                    </small>      
+                  </div>
+            </div>
+            <div class="form-group">
+                <label for="company" [ngClass]="{'text-danger': contactForm.get('company').invalid && contactForm.get('company').touched }" >Company</label>
+                <input type="text" [ngClass]="{'is-invalid': contactForm.get('company').invalid && contactForm.get('company').touched }" class="form-control"  formControlName="company" id="company"  placeholder="Company">
+                <div class="col" *ngIf="contactForm.get('company').invalid && contactForm.get('company').touched ">
+                    <small  class="text-danger">
+                      Please Company Name
+                    </small>      
+                  </div>
+            </div>
+            <div class="form-group">
+                <label for="email" [ngClass]="{'text-danger': contactForm.get('email').invalid && contactForm.get('email').touched }" >Email</label>
+                <input type="text" [ngClass]="{'is-invalid': contactForm.get('email').invalid && contactForm.get('email').touched }" class="form-control"   formControlName="email" id="email"  placeholder="Email">
+                <div class="col" *ngIf="contactForm.get('email').invalid && contactForm.get('email').touched && contactForm.get('email').errors?.required ">
+                    <small  class="text-danger">
+                      Please Enter Email
+                    </small>      
+                  </div>
+                  <div class="col" *ngIf="contactForm.get('email').invalid && contactForm.get('email').touched && contactForm.get('email').errors?.pattern">
+                    <small  class="text-danger">
+                      Please Enter valid Email
+                    </small>      
+                  </div>
+            </div>
+            <div class="form-group">
+                <label for="phone" [ngClass]="{'text-danger': contactForm.get('phone').invalid && contactForm.get('phone').touched }" >Phone</label>
+                <input type="text" [ngClass]="{'is-invalid': contactForm.get('phone').invalid && contactForm.get('phone').touched }" class="form-control"  formControlName="phone" id="phone"  placeholder="phone">
+                <div class="col" *ngIf="contactForm.get('phone').invalid && contactForm.get('phone').touched &&  contactForm.get('phone').errors?.required">
+                    <small  class="text-danger">
+                      Please Enter Phone Number
+                    </small>      
+                  </div>
+                  <div class="col" *ngIf="contactForm.get('phone').invalid && contactForm.get('phone').touched &&  contactForm.get('phone').errors?.pattern">
+                    <small  class="text-danger">
+                      Please Enter Valid Phone Number
+                    </small>      
+                  </div>
+            </div>
+            <div class="form-group">
+                <label for="address" [ngClass]="{'text-danger': contactForm.get('address').invalid && contactForm.get('address').touched }" >Address</label>
+                <textarea [ngClass]="{'is-invalid': contactForm.get('lastName').invalid && contactForm.get('address').touched }" class="form-control"  formControlName="address" id="address" placeholder="Address"></textarea>
+                <div class="col" *ngIf="contactForm.get('address').invalid && contactForm.get('address').touched ">
+                    <small  class="text-danger">
+                      Please Enter Address
+                    </small>      
+                  </div>
+            </div>
+              <div class=" row ">
+                <div class="col text-center">
+                    <button type="submit" (onClick)="validateAndPost()" class="btn btn-primary text-center">Submit</button>
+                </div>
+              </div>
+           
+          </form>
+    </div>
+
+</div>
